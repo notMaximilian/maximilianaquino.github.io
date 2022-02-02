@@ -159,7 +159,7 @@ function rand(min, max) {
               setTimeout(()=>{
                 head.$element.remove()
               },1000)
-              //TODO Fix destroying all bug
+              //TODO Fix 
               destroyLaser($container, laser);
               WINDOW_STATE.lasers = WINDOW_STATE.lasers.filter(e => !e.isDead);
             }

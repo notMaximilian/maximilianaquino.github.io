@@ -84,7 +84,11 @@ function rand(min, max) {
     // if (max === undefined) max = 1;
     // return min + Math.random() * (max - min);
   }
-   
+  
+
+
+
+  
   function updateRocket(dt, $container) {
     if (WINDOW_STATE.leftPressed) {
       WINDOW_STATE.rocketX -= dt * ROCKET_MAX_SPEED;
@@ -150,24 +154,10 @@ function rand(min, max) {
         if (header.isDead) continue;
         const r2 = header.$element.getBoundingClientRect();
         if (rectsIntersect(r1, r2)) {
-          if (header.name == 'more'){
-              for (let x = 0; x < headers.length; x++){
-              let head = headers[x];
-              head.$element.style.opacity = 0;
-              head.$element.style.transition = 'ease-in-out 0.5s';
+          if (header.name == 'more'){}
             
-              setTimeout(()=>{
-                head.$element.remove()
-              },1000)
-              //TODO Fix destroying all bug
-              destroyLaser($container, laser);
-              WINDOW_STATE.lasers = WINDOW_STATE.lasers.filter(e => !e.isDead);
-            }
-            return;
-          }
-          console.log('i shouldnt be here')
-          destroyHeader($container, header);
-          
+        //   destroyHeader($container, header);
+          destroyLaser($container, laser);
           break;
         }
       }
@@ -195,11 +185,11 @@ function rand(min, max) {
         cooldown: rand(0.5, HEADER_COOLDOWN),
         $element,
         name
-    };
+        };
 
-    WINDOW_STATE.headers.push(header);
-    setPosition($element, x, y);
-    setSize($element, 200)
+        WINDOW_STATE.headers.push(header);
+        setPosition($element, x, y);
+        setSize($element, 200)
     
   }
   

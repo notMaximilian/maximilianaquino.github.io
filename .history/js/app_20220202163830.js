@@ -145,25 +145,27 @@ function rand(min, max) {
       setPosition(laser.$element, laser.x, laser.y);
       const r1 = laser.$element.getBoundingClientRect();
       const headers = WINDOW_STATE.headers;
-      for (let j = 0; j < headers.length; j++) {
+      for (headers.length) {
         const header = headers[j];
         if (header.isDead) continue;
         const r2 = header.$element.getBoundingClientRect();
         if (rectsIntersect(r1, r2)) {
-          if (header.name == 'more'){
-              for (let x = 0; x < headers.length; x++){
-              let head = headers[x];
+
+          forEach()
+          for (let x=0; x<4; x++){
+            let head = headers[x];
+            if (head.name == 'more'){
               head.$element.style.opacity = 0;
               head.$element.style.transition = 'ease-in-out 0.5s';
             
               setTimeout(()=>{
                 head.$element.remove()
               },1000)
-              //TODO Fix destroying all bug
+              
               destroyLaser($container, laser);
               WINDOW_STATE.lasers = WINDOW_STATE.lasers.filter(e => !e.isDead);
+              return;
             }
-            return;
           }
           console.log('i shouldnt be here')
           destroyHeader($container, header);
