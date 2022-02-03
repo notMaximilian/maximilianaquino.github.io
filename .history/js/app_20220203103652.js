@@ -1,4 +1,4 @@
-const KEY_CODE_LEFT = 37;
+const KEY_CODE_LEFT = 65;
 const KEY_CODE_RIGHT = 39;
 const KEY_CODE_SPACE = 32;
 let inverted = false;

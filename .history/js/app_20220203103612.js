@@ -1,5 +1,5 @@
-const KEY_CODE_LEFT = 37;
-const KEY_CODE_RIGHT = 39;
+const KEY_CODE_LEFT = 65;
+const KEY_CODE_RIGHT = 68;
 const KEY_CODE_SPACE = 32;
 let inverted = false;
 const WINDOW_WIDTH = window.innerWidth - 50;
@@ -385,9 +385,9 @@ function createHeader($container, name, x, y, i, size) {
   }
   
   function onKeyDown(e) {
-    if (e.keyCode === KEY_CODE_LEFT ) {
+    if (e.keyCode === KEY_CODE_LEFT || e.keyCode === 37) {
       WINDOW_STATE.leftPressed = true;
-    } else if (e.keyCode === KEY_CODE_RIGHT) {
+    } else if (e.keyCode === KEY_CODE_RIGHT || e.keyCode === 39) {
       WINDOW_STATE.rightPressed = true;
     } else if (e.keyCode === KEY_CODE_SPACE) {
       WINDOW_STATE.spacePressed = true;
