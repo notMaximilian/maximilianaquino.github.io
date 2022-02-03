@@ -331,7 +331,7 @@ function createHeader($container, name, x, y, i, size) {
       background.style.backgroundImage = "url('img/background-white.png')";
     }
     else{
-      background.style.backgroundImage = "url('img/background-white-1366x768.png')";
+      
     }
     
 

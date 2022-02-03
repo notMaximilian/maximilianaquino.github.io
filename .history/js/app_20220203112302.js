@@ -325,15 +325,11 @@ function createHeader($container, name, x, y, i, size) {
   
   function init() {
     inverted = false;
-    const width = WINDOW_WIDTH + 50;
+    console.log(WINDOW_HEIGHT)
+    console.log(WINDOW_WIDTH+50)
     const background = document.querySelector(".game-wrapper");
-    if (width >= 1920){
-      background.style.backgroundImage = "url('img/background-white.png')";
-    }
-    else{
-      background.style.backgroundImage = "url('img/background-white-1366x768.png')";
-    }
-    
+    // background.style.backgroundImage = "img/testbg.png"
+    background.style.backgroundImage = "url('img/background-white.png')";
 
     // background.style.background = 'white';
 
