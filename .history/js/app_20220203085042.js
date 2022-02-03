@@ -220,11 +220,9 @@ function createHeader($container, name, x, y, i, size) {
     $element.src = img;
     $element.className = "header";
     $element.style.position = "absolute";
-    setPosition($element, x, y);
-    setSize($element, size)
-    $element.style.transition = "all .2s ease-in-out";
-
-
+    $element.className = '.portfolio-header'
+    
+    
     let header = {
         x,
         y,
@@ -234,40 +232,10 @@ function createHeader($container, name, x, y, i, size) {
         dead: false
     };
 
-    header.$element.addEventListener('mouseenter', ()=>{
-      if (name == "about"){
-        $element.style.width = "450px";
-      }
-      else if(name == "skills"){
-        $element.style.width = "230px"
-      }
-      else if(name == "project"){
-        $element.style.width = "350px"
-      }
-      else if(name == "more"){
-        $element.style.width = "250px"
-      }
-    })
-
-    header.$element.addEventListener('mouseleave', ()=>{
-      if (name == "about"){
-        $element.style.width = "400px"
-      }
-      else if(name == "skills"){
-        $element.style.width = "180px"
-      }
-      else if(name == "project"){
-        $element.style.width = "300px"
-      }
-      else if(name == "more"){
-        $element.style.width = "200px"
-      }
-      
-    })
-
     $container.appendChild($element);
     WINDOW_STATE.headers.push(header);
-
+    setPosition($element, x, y);
+    setSize($element, size)
     
   }
   
@@ -326,10 +294,7 @@ function createHeader($container, name, x, y, i, size) {
   function init() {
     inverted = false;
     const background = document.querySelector(".game-wrapper");
-    // background.style.backgroundImage = "img/testbg.png"
-    background.style.backgroundImage = "url('img/testbg.png')";
-
-    // background.style.background = 'white';
+    background.style.background = 'white';
 
     const $container = document.querySelector(".game");
     createRocket($container);

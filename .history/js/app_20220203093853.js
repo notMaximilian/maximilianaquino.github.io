@@ -245,7 +245,7 @@ function createHeader($container, name, x, y, i, size) {
         $element.style.width = "350px"
       }
       else if(name == "more"){
-        $element.style.width = "250px"
+        $element.style.width = "250"
       }
     })
 
@@ -260,7 +260,7 @@ function createHeader($container, name, x, y, i, size) {
         $element.style.width = "300px"
       }
       else if(name == "more"){
-        $element.style.width = "200px"
+        $element.style.width = "200"
       }
       
     })
@@ -326,10 +326,7 @@ function createHeader($container, name, x, y, i, size) {
   function init() {
     inverted = false;
     const background = document.querySelector(".game-wrapper");
-    // background.style.backgroundImage = "img/testbg.png"
-    background.style.backgroundImage = "url('img/testbg.png')";
-
-    // background.style.background = 'white';
+    background.style.background = 'white';
 
     const $container = document.querySelector(".game");
     createRocket($container);

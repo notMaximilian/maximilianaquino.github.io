@@ -166,3 +166,13 @@ body {
   opacity: 0;
   transition: ease-in-out 0.5s;
 }
+
+.portfolio-header{
+  position: absolute;
+  width: 5px;
+  transition: all .2s ease-in-out; 
+}
+
+.portfolio-header:hover{
+  transform: scale(1.1);
+}

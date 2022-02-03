@@ -244,11 +244,8 @@ function createHeader($container, name, x, y, i, size) {
       else if(name == "project"){
         $element.style.width = "350px"
       }
-      else if(name == "more"){
-        $element.style.width = "250px"
-      }
     })
-
+//220
     header.$element.addEventListener('mouseleave', ()=>{
       if (name == "about"){
         $element.style.width = "400px"
@@ -258,9 +255,6 @@ function createHeader($container, name, x, y, i, size) {
       }
       else if(name == "project"){
         $element.style.width = "300px"
-      }
-      else if(name == "more"){
-        $element.style.width = "200px"
       }
       
     })
@@ -326,10 +320,7 @@ function createHeader($container, name, x, y, i, size) {
   function init() {
     inverted = false;
     const background = document.querySelector(".game-wrapper");
-    // background.style.backgroundImage = "img/testbg.png"
-    background.style.backgroundImage = "url('img/testbg.png')";
-
-    // background.style.background = 'white';
+    background.style.background = 'white';
 
     const $container = document.querySelector(".game");
     createRocket($container);

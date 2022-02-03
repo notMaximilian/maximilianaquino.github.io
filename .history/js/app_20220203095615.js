@@ -326,8 +326,8 @@ function createHeader($container, name, x, y, i, size) {
   function init() {
     inverted = false;
     const background = document.querySelector(".game-wrapper");
-    // background.style.backgroundImage = "img/testbg.png"
-    background.style.backgroundImage = "url('img/testbg.png')";
+    background.style.backgroundImage = "img/testbg.png"
+    document.body.style.backgroundImage = "url('image.png')";
 
     // background.style.background = 'white';
 

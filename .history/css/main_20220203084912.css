@@ -15,6 +15,20 @@ body {
   height: 100%;
 }
 
+header {
+  text-align: center;
+  background: black;
+  color: #fff;
+  padding: 10px;
+}
+
+footer {
+  padding: 10px;
+  text-align: center;
+  font-size: 11px;
+  background: black;
+  color: white;
+}
 
 .game-wrapper {
   flex: 1;
@@ -165,4 +179,13 @@ body {
   bottom: 150px;
   opacity: 0;
   transition: ease-in-out 0.5s;
+}
+
+.portfolio-header{
+  position:absolute;
+  transition: all .2s ease-in-out; 
+}
+
+.portfolio-header:hover{
+  transform: scale(1.1);
 }
