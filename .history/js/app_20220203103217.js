@@ -344,10 +344,10 @@ function createHeader($container, name, x, y, i, size) {
     const background = document.querySelector(".game-wrapper");
     background.style.backgroundImage = "url('img/background-black.png')";
     createRocket($container);
-    createHeader($container, '1', ((WINDOW_WIDTH / 2) - 230) + 90, (WINDOW_HEIGHT - 800) , 'img/inverted-card1.png', 400);
-    createHeader($container, '2', ((WINDOW_WIDTH / 2) - 620) + 90, (WINDOW_HEIGHT - 785) , 'img/inverted-card2.png', 300);
-    createHeader($container, '3', ((WINDOW_WIDTH / 2) - 930) + 90, (WINDOW_HEIGHT - 785) , 'img/inverted-card5.png', 180);
-    createHeader($container, 'back', ((WINDOW_WIDTH / 2) +  270) + 90, (WINDOW_HEIGHT - 800), 'img/inverted-card4.png', 200);
+    createHeader($container, '1', ((WINDOW_WIDTH / 2) - 230) + 90, (WINDOW_HEIGHT - 800) + 200, 'img/inverted-card1.png', 400);
+    createHeader($container, '2', ((WINDOW_WIDTH / 2) - 620) + 90, (WINDOW_HEIGHT - 785) + 200, 'img/inverted-card2.png', 300);
+    createHeader($container, '3', ((WINDOW_WIDTH / 2) - 930) + 90, (WINDOW_HEIGHT - 785) + 200, 'img/inverted-card5.png', 180);
+    createHeader($container, 'back', ((WINDOW_WIDTH / 2) +  270) + 90, (WINDOW_HEIGHT - 800) + 200, 'img/inverted-card4.png', 200);
   }
   
   

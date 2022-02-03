@@ -327,27 +327,27 @@ function createHeader($container, name, x, y, i, size) {
     inverted = false;
     const background = document.querySelector(".game-wrapper");
     // background.style.backgroundImage = "img/testbg.png"
-    background.style.backgroundImage = "url('img/background-white.png')";
+    background.style.backgroundImage = "url('img/testbg.png')";
 
     // background.style.background = 'white';
 
     const $container = document.querySelector(".game");
     createRocket($container);
-    createHeader($container, 'about', ((WINDOW_WIDTH / 2) - 230) + 90, (WINDOW_HEIGHT - 800) , 'img/card1.png', 400);
-    createHeader($container, 'project', ((WINDOW_WIDTH / 2) - 620) + 90, (WINDOW_HEIGHT - 785) , 'img/card2.png', 300);
-    createHeader($container, 'skills', ((WINDOW_WIDTH / 2) - 930) + 90, (WINDOW_HEIGHT - 785) , 'img/card5.png', 180);
-    createHeader($container, 'more', ((WINDOW_WIDTH / 2) +  270) + 90, (WINDOW_HEIGHT - 800), 'img/card4.png', 200);
+    createHeader($container, 'about', ((WINDOW_WIDTH / 2) - 230) + 90, (WINDOW_HEIGHT - 800) - 100, 'img/card1.png', 400);
+    createHeader($container, 'project', ((WINDOW_WIDTH / 2) - 620) + 90, (WINDOW_HEIGHT - 785) - 100, 'img/card2.png', 300);
+    createHeader($container, 'skills', ((WINDOW_WIDTH / 2) - 930) + 90, (WINDOW_HEIGHT - 785) - 100, 'img/card5.png', 180);
+    createHeader($container, 'more', ((WINDOW_WIDTH / 2) +  270) + 90, (WINDOW_HEIGHT - 800) - 100, 'img/card4.png', 200);
   }
   
   function initInvert($container,x ,y){
     inverted = true;
     const background = document.querySelector(".game-wrapper");
-    background.style.backgroundImage = "url('img/background-black.png')";
+    background.style.background = 'black';
     createRocket($container);
-    createHeader($container, '1', ((WINDOW_WIDTH / 2) - 230) + 90, (WINDOW_HEIGHT - 800) , 'img/inverted-card1.png', 400);
-    createHeader($container, '2', ((WINDOW_WIDTH / 2) - 620) + 90, (WINDOW_HEIGHT - 785) , 'img/inverted-card2.png', 300);
-    createHeader($container, '3', ((WINDOW_WIDTH / 2) - 930) + 90, (WINDOW_HEIGHT - 785) , 'img/inverted-card5.png', 180);
-    createHeader($container, 'back', ((WINDOW_WIDTH / 2) +  270) + 90, (WINDOW_HEIGHT - 800), 'img/inverted-card4.png', 200);
+    createHeader($container, '1', ((WINDOW_WIDTH / 2) - 230) + 90, (WINDOW_HEIGHT - 800) - 200, 'img/inverted-card1.png', 400);
+    createHeader($container, '2', ((WINDOW_WIDTH / 2) - 620) + 90, (WINDOW_HEIGHT - 785) - 200, 'img/inverted-card2.png', 300);
+    createHeader($container, '3', ((WINDOW_WIDTH / 2) - 930) + 90, (WINDOW_HEIGHT - 785) - 200, 'img/inverted-card5.png', 180);
+    createHeader($container, 'back', ((WINDOW_WIDTH / 2) +  270) + 90, (WINDOW_HEIGHT - 800) - 200, 'img/inverted-card4.png', 200);
   }
   
   
