@@ -381,7 +381,21 @@ function createHeader($container, name, x, y, i, size) {
   function initInvert($container,x ,y){
     inverted = true;
     const background = document.querySelector(".game-wrapper");
-    background.style.backgroundImage = "url('img/background-black-1366x768.png')";
+    const width = WINDOW_WIDTH + 50;
+
+    if (width >= 1920){
+      background.style.backgroundImage = "url('img/background-black.png')";
+      WINDOW_STATE.fullscreen = true;
+    }
+    else if (width == 1366){
+      background.style.backgroundImage = "url('img/background-black-1366x768.png')";
+      WINDOW_STATE.fullscreen = true;
+    }
+    else{
+      WINDOW_STATE.fullscreen == false
+      document.querySelector(".congratulations").style.display = "block";
+      return;
+    }
     createRocket($container);
     createHeader($container, '2', 10 -2.5, 20 , 'img/inverted-card2.png', 17);
     createHeader($container, '1', 30 -2.5, 18 , 'img/inverted-card1.png', 23);
