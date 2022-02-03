@@ -168,16 +168,15 @@ function rand(min, max) {
         const r2 = header.$element.getBoundingClientRect();
         if (rectsIntersect(r1, r2)) {
           if (header.name == 'more' || header.name == 'back'){
-              
+              WINDOW_STATE.lasers = WINDOW_STATE.lasers.filter(e => !e.isDead); 
               for (let x = 0; x < headers.length; x++){
               let head = headers[x];
               if (head.dead == true){continue}
               head.$element.style.opacity = 0;
               head.$element.style.transition = 'ease-in-out 0.5s';
-              destroyHeader($container, head)
+                destroyHeader($container, head)
+        
             }
-            destroyLaser($container, laser);
-            
             const rocket = document.querySelector('.rocket')
             rocket.style.opacity = 0;
             rocket.style.transition = 'ease-in-out 0.5s'
@@ -195,7 +194,6 @@ function rand(min, max) {
                 init()
               },10)
             }
-            WINDOW_STATE.lasers = WINDOW_STATE.lasers.filter(e => !e.isDead); 
             return;
           }
           destroyHeader($container, header);

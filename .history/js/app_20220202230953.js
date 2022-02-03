@@ -175,9 +175,9 @@ function rand(min, max) {
               head.$element.style.opacity = 0;
               head.$element.style.transition = 'ease-in-out 0.5s';
               destroyHeader($container, head)
+              destroyLaser($container, laser);
+        
             }
-            destroyLaser($container, laser);
-            
             const rocket = document.querySelector('.rocket')
             rocket.style.opacity = 0;
             rocket.style.transition = 'ease-in-out 0.5s'
@@ -195,7 +195,6 @@ function rand(min, max) {
                 init()
               },10)
             }
-            WINDOW_STATE.lasers = WINDOW_STATE.lasers.filter(e => !e.isDead); 
             return;
           }
           destroyHeader($container, header);

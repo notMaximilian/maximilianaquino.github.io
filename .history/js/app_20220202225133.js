@@ -167,17 +167,19 @@ function rand(min, max) {
         if (header.isDead) continue;
         const r2 = header.$element.getBoundingClientRect();
         if (rectsIntersect(r1, r2)) {
-          if (header.name == 'more' || header.name == 'back'){
-              
+          if (header.name == 'more' || 'back'){
+              destroyLaser($container, laser);
+              WINDOW_STATE.lasers = WINDOW_STATE.lasers.filter(e => !e.isDead); 
               for (let x = 0; x < headers.length; x++){
               let head = headers[x];
               if (head.dead == true){continue}
               head.$element.style.opacity = 0;
               head.$element.style.transition = 'ease-in-out 0.5s';
-              destroyHeader($container, head)
-            }
-            destroyLaser($container, laser);
             
+         
+                destroyHeader($container, head)
+        
+            }
             const rocket = document.querySelector('.rocket')
             rocket.style.opacity = 0;
             rocket.style.transition = 'ease-in-out 0.5s'
@@ -195,7 +197,6 @@ function rand(min, max) {
                 init()
               },10)
             }
-            WINDOW_STATE.lasers = WINDOW_STATE.lasers.filter(e => !e.isDead); 
             return;
           }
           destroyHeader($container, header);
@@ -208,7 +209,6 @@ function rand(min, max) {
   }
   
 function destroyLaser($container, laser) {
-    console.log('attempting to destroy')
     $container.removeChild(laser.$element);
     laser.isDead = true;
 }
@@ -246,7 +246,7 @@ function createHeader($container, name, x, y, i, size) {
       const header = headers[i];
       const x = header.x + dx;
       const y = header.y + dy;
-    //   setPosition(header.$element, x, y);
+      setPosition(header.$element, x, y);
       header.cooldown -= dt;
       if (header.cooldown <= 0) {
         createHeaderLaser($container, x, y);

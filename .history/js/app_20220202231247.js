@@ -195,7 +195,6 @@ function rand(min, max) {
                 init()
               },10)
             }
-            WINDOW_STATE.lasers = WINDOW_STATE.lasers.filter(e => !e.isDead); 
             return;
           }
           destroyHeader($container, header);
