@@ -354,6 +354,7 @@ function createHeader($container, name, x, y, i, size) {
     inverted = false;
     const width = WINDOW_WIDTH + 50;
     const background = document.querySelector(".game-wrapper");
+    console.log(width);
     if (width >= 1920){
       background.style.backgroundImage = "url('img/background-white.png')";
       WINDOW_STATE.fullscreen = true;
