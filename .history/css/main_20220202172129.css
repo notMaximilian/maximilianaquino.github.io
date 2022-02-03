@@ -35,7 +35,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #ffffff;
+  background: blue;
 }
 .game {
   width: 100%;
@@ -157,7 +157,6 @@ footer {
 
 .intro h1{
   font-family: "Poppins", sans-serif;
-  font-size: 80px;
   margin: 0;
   padding: 0;
 }

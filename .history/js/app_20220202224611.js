@@ -191,13 +191,14 @@ function rand(min, max) {
               setTimeout(()=>{    
                 initInvert($container)
               },10)
+          
             }
             else{
               setTimeout(()=>{    
                 init()
               },10)
+              return
             }
-            return;
           }
           destroyHeader($container, header);
           
@@ -290,10 +291,6 @@ function createHeader($container, name, x, y, i, size) {
   }
   
   function init() {
-    inverted = false;
-    const background = document.querySelector(".game-wrapper");
-    background.style.background = 'white';
-
     const $container = document.querySelector(".game");
     createRocket($container);
     createHeader($container, 'about', ((WINDOW_WIDTH / 2) - 230) + 90, (WINDOW_HEIGHT - 800) - 100, 'img/card1.png', 400);

@@ -90,6 +90,7 @@ footer {
   border-radius: 10px;
   text-align: center;
   animation: pop-in 1s;
+  font-size
   font-family: "Poppins", sans-serif;
 }
 
@@ -157,7 +158,6 @@ footer {
 
 .intro h1{
   font-family: "Poppins", sans-serif;
-  font-size: 80px;
   margin: 0;
   padding: 0;
 }

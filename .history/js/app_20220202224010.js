@@ -117,7 +117,6 @@ function rand(min, max) {
   
     if (WINDOW_STATE.spacePressed && WINDOW_STATE.rocketCooldown <= 0) {
       createLaser($container, WINDOW_STATE.rocketX - 79,  WINDOW_STATE.rocketY-20);
-      console.log(WINDOW_STATE.rocketX)
       WINDOW_STATE.rocketCooldown = LASER_COOLDOWN;
     }
     if (WINDOW_STATE.rocketCooldown > 0) {
@@ -132,7 +131,6 @@ function rand(min, max) {
   function createLaser($container, x, y) {
     if(rocketSpawn == false) {return;}
     const $element = document.createElement("img");
-    console.log($element)
     if(inverted == true){$element.src="img/laser-inverted.png"}
     else{$element.src = "img/laser.png";}
     $element.className = "laser";
@@ -185,18 +183,15 @@ function rand(min, max) {
             rocket.style.transition = 'ease-in-out 0.5s'
 
             destroyRocket($container, rocket)
-
-            console.log(inverted)
-            if(inverted == false){
-              setTimeout(()=>{    
-                initInvert($container)
-              },10)
-            }
-            else{
+            if (inverted == true){
               setTimeout(()=>{    
                 init()
               },10)
             }
+
+          
+
+            
             return;
           }
           destroyHeader($container, header);
@@ -290,10 +285,6 @@ function createHeader($container, name, x, y, i, size) {
   }
   
   function init() {
-    inverted = false;
-    const background = document.querySelector(".game-wrapper");
-    background.style.background = 'white';
-
     const $container = document.querySelector(".game");
     createRocket($container);
     createHeader($container, 'about', ((WINDOW_WIDTH / 2) - 230) + 90, (WINDOW_HEIGHT - 800) - 100, 'img/card1.png', 400);

@@ -1,7 +1,7 @@
 const KEY_CODE_LEFT = 65;
 const KEY_CODE_RIGHT = 68;
 const KEY_CODE_SPACE = 32;
-let inverted = false;
+
 const WINDOW_WIDTH = window.innerWidth - 50;
 const WINDOW_HEIGHT = window.innerHeight;
 
@@ -9,7 +9,7 @@ const ROCKET_WIDTH = 20;
 const ROCKET_MAX_SPEED = 300.0;
 const LASER_MAX_SPEED = 600.0;
 const LASER_COOLDOWN = 0.5;
-let rocketSpawn = false;
+
 const HEADERS_PER_ROW = 10;
 const HEADER_HORIZONTAL_PADDING = 80;
 const HEADER_VERTICAL_PADDING = 70;
@@ -21,8 +21,8 @@ const WINDOW_STATE = {
     leftPressed: false,
     rightPressed: false,
     spacePressed: false,
-    rocketX: WINDOW_WIDTH / 2,
-    rocketY: WINDOW_HEIGHT - 300,
+    rocketX: 0,
+    rocketY: 0,
     rocketCooldown: 0,
     lasers: [],
     headers: [],
@@ -32,34 +32,23 @@ const WINDOW_STATE = {
 
 // create user controlled rocket for selecting header elements
 function createRocket($container) {
-    rocketSpawn = true;
+    WINDOW_STATE.rocketX = WINDOW_WIDTH / 2;
+    WINDOW_STATE.rocketY = WINDOW_HEIGHT - 200;
     const $rocket = document.createElement("img");
-    if(inverted == true){$rocket.src = "img/rocket-inverted.png";}
-    else{$rocket.src = "img/rocket.png";}
+    $rocket.src = "img/rocket.png";
     $rocket.className = "rocket";
-    
-    setPosition($rocket, WINDOW_STATE.rocketX , WINDOW_STATE.rocketY);
-    setSize($rocket, 150)
-
     $container.appendChild($rocket);
+    setPosition($rocket, WINDOW_STATE.rocketX, WINDOW_STATE.rocketY);
+    setSize($rocket, 100)
 }
 
 function destroyRocket($container, rocket) {
-    rocketSpawn = false;
     $container.removeChild(rocket);
     WINDOW_STATE.finalState = true;
     const audio = new Audio("sound/sfx-lose.ogg");
     audio.play();
 }
 
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
-}
 
 
 function rectsIntersect(r1, r2) {
@@ -76,9 +65,7 @@ function setSize($element, width){
     $element.style.height = "auto";
   }
 
-function setPosition(el, x, y) { 
-    if(el == null){console.log('NULL') 
-    return;}
+function setPosition(el, x, y) {
     el.style.transform = `translate(${x}px, ${y}px)`;
 }
 
@@ -116,7 +103,7 @@ function rand(min, max) {
   
   
     if (WINDOW_STATE.spacePressed && WINDOW_STATE.rocketCooldown <= 0) {
-      createLaser($container, WINDOW_STATE.rocketX - 79,  WINDOW_STATE.rocketY-20);
+      createLaser($container, WINDOW_STATE.rocketX -50,  WINDOW_STATE.rocketY-20);
       console.log(WINDOW_STATE.rocketX)
       WINDOW_STATE.rocketCooldown = LASER_COOLDOWN;
     }
@@ -125,16 +112,13 @@ function rand(min, max) {
     }
   
     const rocket = document.querySelector(".rocket");
-    if(rocket == null){return;}
     setPosition(rocket, WINDOW_STATE.rocketX, WINDOW_STATE.rocketY);
   }
   
   function createLaser($container, x, y) {
-    if(rocketSpawn == false) {return;}
     const $element = document.createElement("img");
     console.log($element)
-    if(inverted == true){$element.src="img/laser-inverted.png"}
-    else{$element.src = "img/laser.png";}
+    $element.src = "img/laser.png";
     $element.className = "laser";
     $element.style.position = "absolute"
     $container.appendChild($element);
@@ -151,7 +135,6 @@ function rand(min, max) {
   }
   
   function updateLasers(dt, $container) {
-    if(rocketSpawn == false) {return;}
     const lasers = WINDOW_STATE.lasers;
     for (let i = 0; i < lasers.length; i++) {
       const laser = lasers[i];
@@ -167,7 +150,7 @@ function rand(min, max) {
         if (header.isDead) continue;
         const r2 = header.$element.getBoundingClientRect();
         if (rectsIntersect(r1, r2)) {
-          if (header.name == 'more' || 'back'){
+          if (header.name == 'more'){
               destroyLaser($container, laser);
               WINDOW_STATE.lasers = WINDOW_STATE.lasers.filter(e => !e.isDead); 
               for (let x = 0; x < headers.length; x++){
@@ -176,29 +159,17 @@ function rand(min, max) {
               head.$element.style.opacity = 0;
               head.$element.style.transition = 'ease-in-out 0.5s';
             
-         
+              setTimeout(()=>{
+                // head.$element.remove()
                 destroyHeader($container, head)
-        
+              },1000)
             }
-            const rocket = document.querySelector('.rocket')
-            rocket.style.opacity = 0;
-            rocket.style.transition = 'ease-in-out 0.5s'
-
-            destroyRocket($container, rocket)
-
-            console.log(inverted)
-            if(inverted == false){
-              setTimeout(()=>{    
-                initInvert($container)
-              },10)
-            }
-            else{
-              setTimeout(()=>{    
-                init()
-              },10)
-            }
+            
+            initInvert($container)
             return;
           }
+          console.log(header.name)
+          console.log('i shouldnt be here')
           destroyHeader($container, header);
           
           break;
@@ -208,12 +179,12 @@ function rand(min, max) {
     WINDOW_STATE.lasers = WINDOW_STATE.lasers.filter(e => !e.isDead);
   }
   
-function destroyLaser($container, laser) {
+  function destroyLaser($container, laser) {
     $container.removeChild(laser.$element);
     laser.isDead = true;
-}
+  }
   
-function createHeader($container, name, x, y, i, size) {
+  function createHeader($container, name, x, y, i) {
 
     let $element = document.createElement("img");
     let img = i;
@@ -233,7 +204,7 @@ function createHeader($container, name, x, y, i, size) {
     $container.appendChild($element);
     WINDOW_STATE.headers.push(header);
     setPosition($element, x, y);
-    setSize($element, size)
+    setSize($element, 200)
     
   }
   
@@ -290,27 +261,19 @@ function createHeader($container, name, x, y, i, size) {
   }
   
   function init() {
-    inverted = false;
-    const background = document.querySelector(".game-wrapper");
-    background.style.background = 'white';
-
     const $container = document.querySelector(".game");
     createRocket($container);
-    createHeader($container, 'about', ((WINDOW_WIDTH / 2) - 230) + 90, (WINDOW_HEIGHT - 800) - 100, 'img/card1.png', 400);
-    createHeader($container, 'project', ((WINDOW_WIDTH / 2) - 620) + 90, (WINDOW_HEIGHT - 785) - 100, 'img/card2.png', 300);
-    createHeader($container, 'skills', ((WINDOW_WIDTH / 2) - 930) + 90, (WINDOW_HEIGHT - 785) - 100, 'img/card5.png', 180);
-    createHeader($container, 'more', ((WINDOW_WIDTH / 2) +  270) + 90, (WINDOW_HEIGHT - 800) - 100, 'img/card4.png', 200);
+    createHeader($container, 'about', (WINDOW_WIDTH / 2), (WINDOW_HEIGHT - 580), 'img/card1.png');
+    createHeader($container, 'project', (WINDOW_WIDTH / 2) - 650, (WINDOW_HEIGHT - 580), 'img/card2.png');
+    createHeader($container, 'courses', (WINDOW_WIDTH / 2) + 300, (WINDOW_HEIGHT - 580), 'img/card3.png');
+    createHeader($container, 'more', (WINDOW_WIDTH / 2) - 300, (WINDOW_HEIGHT - 580), 'img/card4.png');
   }
   
-  function initInvert($container,x ,y){
-    inverted = true;
+  function initInvert($container){
     const background = document.querySelector(".game-wrapper");
     background.style.background = 'black';
-    createRocket($container);
-    createHeader($container, '1', ((WINDOW_WIDTH / 2) - 230) + 90, (WINDOW_HEIGHT - 800) - 100, 'img/inverted-card1.png', 400);
-    createHeader($container, '2', ((WINDOW_WIDTH / 2) - 620) + 90, (WINDOW_HEIGHT - 785) - 100, 'img/inverted-card2.png', 300);
-    createHeader($container, '3', ((WINDOW_WIDTH / 2) - 930) + 90, (WINDOW_HEIGHT - 785) - 100, 'img/inverted-card5.png', 180);
-    createHeader($container, 'back', ((WINDOW_WIDTH / 2) +  270) + 90, (WINDOW_HEIGHT - 800) - 100, 'img/inverted-card4.png', 200);
+    // intro.style.top = '0vh';
+    
   }
   
   
@@ -325,17 +288,17 @@ function createHeader($container, name, x, y, i, size) {
 
     const dt = (currentTime - WINDOW_STATE.lastTime) / 1000.0;
   
-    // if (WINDOW_STATE.finalState) {
-    //   document.querySelector(".window-over").style.display = "block";
-    //   return;
-    // }
+    if (WINDOW_STATE.finalState) {
+      document.querySelector(".window-over").style.display = "block";
+      return;
+    }
   
-    // if (rocketHasWon()) {
-    //   document.querySelector(".congratulations").style.display = "block";
-    //   const rocket = document.querySelector(".rocket");
-    //   destroyRocket($container, rocket)
-    //   return;
-    // }
+    if (rocketHasWon()) {
+      document.querySelector(".congratulations").style.display = "block";
+      const rocket = document.querySelector(".rocket");
+      destroyRocket($container, rocket)
+      return;
+    }
   
     
     updateRocket(dt, $container);

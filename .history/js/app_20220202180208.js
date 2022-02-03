@@ -22,7 +22,7 @@ const WINDOW_STATE = {
     rightPressed: false,
     spacePressed: false,
     rocketX: WINDOW_WIDTH / 2,
-    rocketY: WINDOW_HEIGHT - 300,
+    rocketY: WINDOW_HEIGHT - 200,
     rocketCooldown: 0,
     lasers: [],
     headers: [],
@@ -37,11 +37,9 @@ function createRocket($container) {
     if(inverted == true){$rocket.src = "img/rocket-inverted.png";}
     else{$rocket.src = "img/rocket.png";}
     $rocket.className = "rocket";
-    
-    setPosition($rocket, WINDOW_STATE.rocketX , WINDOW_STATE.rocketY);
-    setSize($rocket, 150)
-
     $container.appendChild($rocket);
+    setPosition($rocket, WINDOW_STATE.rocketX, WINDOW_STATE.rocketY);
+    setSize($rocket, 100)
 }
 
 function destroyRocket($container, rocket) {
@@ -77,8 +75,7 @@ function setSize($element, width){
   }
 
 function setPosition(el, x, y) { 
-    if(el == null){console.log('NULL') 
-    return;}
+    if(el == null){return;}
     el.style.transform = `translate(${x}px, ${y}px)`;
 }
 
@@ -116,7 +113,7 @@ function rand(min, max) {
   
   
     if (WINDOW_STATE.spacePressed && WINDOW_STATE.rocketCooldown <= 0) {
-      createLaser($container, WINDOW_STATE.rocketX - 79,  WINDOW_STATE.rocketY-20);
+      createLaser($container, WINDOW_STATE.rocketX -50,  WINDOW_STATE.rocketY-20);
       console.log(WINDOW_STATE.rocketX)
       WINDOW_STATE.rocketCooldown = LASER_COOLDOWN;
     }
@@ -167,7 +164,7 @@ function rand(min, max) {
         if (header.isDead) continue;
         const r2 = header.$element.getBoundingClientRect();
         if (rectsIntersect(r1, r2)) {
-          if (header.name == 'more' || 'back'){
+          if (header.name == 'more'){
               destroyLaser($container, laser);
               WINDOW_STATE.lasers = WINDOW_STATE.lasers.filter(e => !e.isDead); 
               for (let x = 0; x < headers.length; x++){
@@ -185,18 +182,12 @@ function rand(min, max) {
             rocket.style.transition = 'ease-in-out 0.5s'
 
             destroyRocket($container, rocket)
+            setTimeout(()=>{    
+              initInvert($container)
+            },10)
+          
 
-            console.log(inverted)
-            if(inverted == false){
-              setTimeout(()=>{    
-                initInvert($container)
-              },10)
-            }
-            else{
-              setTimeout(()=>{    
-                init()
-              },10)
-            }
+            
             return;
           }
           destroyHeader($container, header);
@@ -208,12 +199,12 @@ function rand(min, max) {
     WINDOW_STATE.lasers = WINDOW_STATE.lasers.filter(e => !e.isDead);
   }
   
-function destroyLaser($container, laser) {
+  function destroyLaser($container, laser) {
     $container.removeChild(laser.$element);
     laser.isDead = true;
-}
+  }
   
-function createHeader($container, name, x, y, i, size) {
+  function createHeader($container, name, x, y, i) {
 
     let $element = document.createElement("img");
     let img = i;
@@ -233,7 +224,7 @@ function createHeader($container, name, x, y, i, size) {
     $container.appendChild($element);
     WINDOW_STATE.headers.push(header);
     setPosition($element, x, y);
-    setSize($element, size)
+    setSize($element, 200)
     
   }
   
@@ -290,27 +281,19 @@ function createHeader($container, name, x, y, i, size) {
   }
   
   function init() {
-    inverted = false;
-    const background = document.querySelector(".game-wrapper");
-    background.style.background = 'white';
-
     const $container = document.querySelector(".game");
     createRocket($container);
-    createHeader($container, 'about', ((WINDOW_WIDTH / 2) - 230) + 90, (WINDOW_HEIGHT - 800) - 100, 'img/card1.png', 400);
-    createHeader($container, 'project', ((WINDOW_WIDTH / 2) - 620) + 90, (WINDOW_HEIGHT - 785) - 100, 'img/card2.png', 300);
-    createHeader($container, 'skills', ((WINDOW_WIDTH / 2) - 930) + 90, (WINDOW_HEIGHT - 785) - 100, 'img/card5.png', 180);
-    createHeader($container, 'more', ((WINDOW_WIDTH / 2) +  270) + 90, (WINDOW_HEIGHT - 800) - 100, 'img/card4.png', 200);
-  }
+    createHeader($container, 'about', (WINDOW_WIDTH / 2), (WINDOW_HEIGHT - 580), 'img/card1.png');
+  //   createHeader($container, 'project', (WINDOW_WIDTH / 2) - 650, (WINDOW_HEIGHT - 580), 'img/card2.png');
+  //   createHeader($container, 'courses', (WINDOW_WIDTH / 2) + 300, (WINDOW_HEIGHT - 580), 'img/card3.png');
+  //   createHeader($container, 'more', (WINDOW_WIDTH / 2) - 300, (WINDOW_HEIGHT - 580), 'img/card4.png');
+  // }
   
   function initInvert($container,x ,y){
     inverted = true;
     const background = document.querySelector(".game-wrapper");
     background.style.background = 'black';
     createRocket($container);
-    createHeader($container, '1', ((WINDOW_WIDTH / 2) - 230) + 90, (WINDOW_HEIGHT - 800) - 100, 'img/inverted-card1.png', 400);
-    createHeader($container, '2', ((WINDOW_WIDTH / 2) - 620) + 90, (WINDOW_HEIGHT - 785) - 100, 'img/inverted-card2.png', 300);
-    createHeader($container, '3', ((WINDOW_WIDTH / 2) - 930) + 90, (WINDOW_HEIGHT - 785) - 100, 'img/inverted-card5.png', 180);
-    createHeader($container, 'back', ((WINDOW_WIDTH / 2) +  270) + 90, (WINDOW_HEIGHT - 800) - 100, 'img/inverted-card4.png', 200);
   }
   
   

@@ -118,7 +118,7 @@ footer {
   );
   padding: 10px 40px;
   font-family: "Poppins", sans-serif;
-  font-size: 14px;
+  font-size: 300;
 }
 @keyframes pop-in {
   0% {
@@ -157,7 +157,6 @@ footer {
 
 .intro h1{
   font-family: "Poppins", sans-serif;
-  font-size: 80px;
   margin: 0;
   padding: 0;
 }

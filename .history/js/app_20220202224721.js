@@ -292,7 +292,7 @@ function createHeader($container, name, x, y, i, size) {
   function init() {
     inverted = false;
     const background = document.querySelector(".game-wrapper");
-    background.style.background = 'white';
+    background.style.background = 'black';
 
     const $container = document.querySelector(".game");
     createRocket($container);
