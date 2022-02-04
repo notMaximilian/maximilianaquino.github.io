@@ -179,9 +179,7 @@ body {
   transform: translate(35vw, 23vh);
 }
 #max{
-  top: -5
-  
-  vh;
+  top: -vh;
   position: absolute; 
   font-family: "Poppins", sans-serif;
   font-size: 12vh;
