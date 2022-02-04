@@ -179,10 +179,10 @@ body {
   transform: translate(35vw, 23vh);
 }
 #max{
-  top: 5vh;
   position: absolute; 
+  top:-13vh;
   font-family: "Poppins", sans-serif;
-  font-size: 1000%;
+  font-size: 10em;
 }
 
 #github{
