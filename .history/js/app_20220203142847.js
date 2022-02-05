@@ -4,11 +4,9 @@ const KEY_CODE_SPACE = 32;
 let inverted = false;
 const WINDOW_WIDTH = window.innerWidth - 50;
 const WINDOW_HEIGHT = window.innerHeight;
-let currentMousePos = 0
-let mouse
-let rocketPos = 0;
+
 const ROCKET_WIDTH = 20;
-const ROCKET_MAX_SPEED = 800.0;
+const ROCKET_MAX_SPEED = 300.0;
 const LASER_MAX_SPEED = 600.0;
 const LASER_COOLDOWN = 0.5;
 let rocketSpawn = false;
@@ -17,13 +15,6 @@ const HEADER_HORIZONTAL_PADDING = 80;
 const HEADER_VERTICAL_PADDING = 70;
 const HEADER_VERTICAL_SPACING = 80;
 const HEADER_COOLDOWN = 5.0;
-
-headerCoords = [
-  {x:'', y:''},
-  {x:'', y:''},
-  {x:'', y:''},
-  {x:'', y:''},
-]
 
 const WINDOW_STATE = {
     lastTime: Date.now(),
@@ -63,13 +54,7 @@ function createRocket($container) {
     if(inverted == true){$rocket.src = "img/rocket-inverted.png";}
     else{$rocket.src = "img/rocket.png";}
     $rocket.className = "rocket";
-    if (WINDOW_WIDTH + 50 == 1920){
-      setSize($rocket,9)
-    }
-    else{
-      setSize($rocket, 7)
-    }
-    
+    setSize($rocket, 7)
     WINDOW_STATE.rocketY = 440;
     $container.appendChild($rocket);
 }
@@ -82,7 +67,14 @@ function destroyRocket($container, rocket) {
     audio.play();
 }
 
-
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
 
 
 function rectsIntersect(r1, r2) {
@@ -112,40 +104,24 @@ function rand(min, max) {
     // return min + Math.random() * (max - min);
   }
    
-function updateRocket(dt, $container) {
-  if(mouse <= '4' ){
-    WINDOW_STATE.rocketX -= dt * ROCKET_MAX_SPEED;
-  }
-  else if (mouse >= '96'){
-    WINDOW_STATE.rocketX += dt * ROCKET_MAX_SPEED;
-  }
-
+  function updateRocket(dt, $container) {
     if (WINDOW_STATE.leftPressed) {
       WINDOW_STATE.rocketX -= dt * ROCKET_MAX_SPEED;
     }
     if (WINDOW_STATE.rightPressed) {
       WINDOW_STATE.rocketX += dt * ROCKET_MAX_SPEED;
     }
-    document.onmousemove = (event) => {
-      mouse = event.clientX * 100 / window.innerWidth + "%";
-      if (mouse > currentMousePos ){
-        WINDOW_STATE.rocketX += dt * ROCKET_MAX_SPEED;
-      }
-      else{
-        WINDOW_STATE.rocketX -= dt * ROCKET_MAX_SPEED;
-      }
-      currentMousePos = mouse;
-    }
 
-    // WINDOW_STATE.rocketX = clamp(
-    //   WINDOW_STATE.rocketX,
-    //   ROCKET_WIDTH,
-    //   WINDOW_WIDTH - ROCKET_WIDTH
-    // );
+
+
+    WINDOW_STATE.rocketX = clamp(
+      WINDOW_STATE.rocketX,
+      ROCKET_WIDTH,
+      WINDOW_WIDTH - ROCKET_WIDTH
+    );
   
   
     if (WINDOW_STATE.spacePressed && WINDOW_STATE.rocketCooldown <= 0) {
-      console.log('space was pressed')
       createLaser($container, WINDOW_STATE.rocketX - 79,  WINDOW_STATE.rocketY-20);
       console.log(WINDOW_STATE.rocketX)
       WINDOW_STATE.rocketCooldown = LASER_COOLDOWN;
@@ -156,8 +132,8 @@ function updateRocket(dt, $container) {
   
     const rocket = document.querySelector(".rocket");
     if(rocket == null){return;}
-    setPosition(rocket, WINDOW_STATE.rocketX, WINDOW_STATE.rocketY + 200);
-}
+    setPosition(rocket, WINDOW_STATE.rocketX, WINDOW_STATE.rocketY);
+  }
   
   function createLaser($container, x, y) {
     if(rocketSpawn == false) {return;}
@@ -214,10 +190,8 @@ function updateRocket(dt, $container) {
       for (let j = 0; j < headers.length; j++) {
         const header = headers[j];
         if (header.isDead) continue;
-        console.log(header.$element)
         const r2 = header.$element.getBoundingClientRect();
         if (rectsIntersect(r1, r2)) {
-          console.log('hit!')
           if (header.name == 'more' || header.name == 'back'){
               
               for (let x = 0; x < headers.length; x++){
@@ -261,20 +235,67 @@ function updateRocket(dt, $container) {
   }
   
 function destroyLaser($container, laser) {
+    console.log('attempting to destroy')
     $container.removeChild(laser.$element);
     laser.isDead = true;
 }
   
-function createHeader($container, $element) {
-    $element.classList.add('navmenuItems');
+function createHeader($container, name, x, y, i, size) {
+
+    let $element = document.createElement("img");
+    let img = i;
+    $element.src = img;
+    $element.className = "header";
+    $element.style.position = "absolute";
+    setHeaderPosition($element, x, y);
+    setSize($element, size)
+    $element.style.transition = "all .2s ease-in-out";
+
+
     let header = {
+        x,
+        y,
         cooldown: rand(0.5, HEADER_COOLDOWN),
         $element,
+        name,
         dead: false
     };
 
+    // header.$element.addEventListener('mouseenter', ()=>{
+    //   if (name == "about"){
+    //     $element.style.width = "450px";
+    //   }
+    //   else if(name == "skills"){
+    //     $element.style.width = "230px"
+    //   }
+    //   else if(name == "project"){
+    //     $element.style.width = "350px"
+    //   }
+    //   else if(name == "more"){
+    //     $element.style.width = "250px"
+    //   }
+    // })
+
+    // header.$element.addEventListener('mouseleave', ()=>{
+    //   if (name == "about"){
+    //     $element.style.width = "400px"
+    //   }
+    //   else if(name == "skills"){
+    //     $element.style.width = "180px"
+    //   }
+    //   else if(name == "project"){
+    //     $element.style.width = "300px"
+    //   }
+    //   else if(name == "more"){
+    //     $element.style.width = "200px"
+    //   }
+      
+    // })
+
     $container.appendChild($element);
     WINDOW_STATE.headers.push(header);
+
+    
   }
   
   function updateHeaders(dt, $container) {
@@ -330,18 +351,16 @@ function createHeader($container, $element) {
   }
   
   function init() {
-
-    document.body.style.zoom = (window.innerWidth / window.outerWidth)
     inverted = false;
     const width = WINDOW_WIDTH + 50;
     const background = document.querySelector(".game-wrapper");
     console.log(width);
     if (width >= 1920){
-      // background.style.backgroundImage = "url('img/background-white.png')";
+      background.style.backgroundImage = "url('img/background-white.png')";
       WINDOW_STATE.fullscreen = true;
     }
     else if (width == 1366){
-      // background.style.backgroundImage = "url('img/background-white-1366x768.png')";
+      background.style.backgroundImage = "url('img/background-white-1366x768.png')";
       WINDOW_STATE.fullscreen = true;
     }
     else{
@@ -353,30 +372,16 @@ function createHeader($container, $element) {
 
     const $container = document.querySelector(".game");
     createRocket($container);
-    createHeader($container, document.getElementById('projects'));
-    createHeader($container, document.getElementById('about'));
-    createHeader($container, document.getElementById('skills'));
-    createHeader($container, document.getElementById('more'));
+    createHeader($container, 'project', 10 -2.5, 20 , 'img/card2.png', 17);
+    createHeader($container, 'about', 30 -2.5, 18, 'img/card1.png', 23);
+    createHeader($container, 'skills', 56 -2.5, 19.5, 'img/card5.png', 10);
+    createHeader($container, 'more', 70 -2.5, 19.5, 'img/card4.png', 10);
   }
   
   function initInvert($container,x ,y){
     inverted = true;
     const background = document.querySelector(".game-wrapper");
-    const width = WINDOW_WIDTH + 50;
-    console.log(width)
-    if (width >= 1920){
-      background.style.backgroundImage = "url('img/background-black.png')";
-      WINDOW_STATE.fullscreen = true;
-    }
-    else if (width == 1366){
-      background.style.backgroundImage = "url('img/background-black-1366x768.png')";
-      WINDOW_STATE.fullscreen = true;
-    }
-    else{
-      WINDOW_STATE.fullscreen == false
-      document.querySelector(".congratulations").style.display = "block";
-      return;
-    }
+    background.style.backgroundImage = "url('img/background-black-1366x768.png')";
     createRocket($container);
     createHeader($container, '2', 10 -2.5, 20 , 'img/inverted-card2.png', 17);
     createHeader($container, '1', 30 -2.5, 18 , 'img/inverted-card1.png', 23);
@@ -408,7 +413,7 @@ function createHeader($container, $element) {
 
     //   return;
     // }
-
+  
     
     updateRocket(dt, $container);
     updateLasers(dt, $container);
@@ -428,28 +433,6 @@ function createHeader($container, $element) {
       WINDOW_STATE.spacePressed = true;
     }
   }
-  
-  function onKeyUp(e) {
-    if (e.keyCode === KEY_CODE_LEFT) {
-      WINDOW_STATE.leftPressed = false;
-    } else if (e.keyCode === KEY_CODE_RIGHT) {
-      WINDOW_STATE.rightPressed = false;
-    } else if (e.keyCode === KEY_CODE_SPACE) {
-      WINDOW_STATE.spacePressed = false;
-    }
-  }
-
-  function onMouseDown() {
-    console.log('down')
-      WINDOW_STATE.spacePressed = true;
-  }
-  function onMouseUp() {
-    console.log('up')
-    setTimeout(()=>{
-      WINDOW_STATE.spacePressed = false;
-    },500) 
-}
-  
   
   function onKeyUp(e) {
     if (e.keyCode === KEY_CODE_LEFT) {
@@ -490,12 +473,8 @@ let logoSpan = document.querySelectorAll('.name')
             window.addEventListener("keydown", onKeyDown);
             window.addEventListener("keyup", onKeyUp);
             window.requestAnimationFrame(update);
-            window.addEventListener('mousedown', onMouseUp)
-            window.addEventListener('mouseup', onMouseDown)
             init();
         }, 2300)
 
     })
  })
-
- 

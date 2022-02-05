@@ -115,6 +115,7 @@ function rand(min, max) {
 function updateRocket(dt, $container) {
   if(mouse <= '4' ){
     WINDOW_STATE.rocketX -= dt * ROCKET_MAX_SPEED;
+    console.log('you did something right!')
   }
   else if (mouse >= '96'){
     WINDOW_STATE.rocketX += dt * ROCKET_MAX_SPEED;
@@ -214,7 +215,6 @@ function updateRocket(dt, $container) {
       for (let j = 0; j < headers.length; j++) {
         const header = headers[j];
         if (header.isDead) continue;
-        console.log(header.$element)
         const r2 = header.$element.getBoundingClientRect();
         if (rectsIntersect(r1, r2)) {
           console.log('hit!')
@@ -266,7 +266,7 @@ function destroyLaser($container, laser) {
 }
   
 function createHeader($container, $element) {
-    $element.classList.add('navmenuItems');
+    $element.classList.add('.navmenu li');
     let header = {
         cooldown: rand(0.5, HEADER_COOLDOWN),
         $element,

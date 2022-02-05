@@ -266,7 +266,6 @@ function destroyLaser($container, laser) {
 }
   
 function createHeader($container, $element) {
-    $element.classList.add('navmenuItems');
     let header = {
         cooldown: rand(0.5, HEADER_COOLDOWN),
         $element,

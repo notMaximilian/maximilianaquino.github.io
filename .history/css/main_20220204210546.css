@@ -207,11 +207,9 @@ body {
   text-align: center;
 }
 
-.test{
-  color:blue;
-}
+.test
 
-.navmenuItems{
+.navmenu li{
   font-size: 4vh;
   font-family: "Poppins", sans-serif;
   float: left;

@@ -2,8 +2,6 @@ html,
 body {
   height: 100%;
   overflow: hidden;
-  cursor: none;
-  user-select: none;
 }
 
 body {
@@ -12,11 +10,9 @@ body {
 }
 
 .wrap {
-  cursor: none;
   display: flex;
   flex-direction: column;
   height: 100%;
-  user-select: none;
 }
 
 
@@ -183,51 +179,17 @@ body {
   transform: translate(35vw, 23vh);
 }
 #max{
-  top: -5vh;
   position: absolute; 
+  top:-13vh;
   font-family: "Poppins", sans-serif;
-  font-size: 12vh;
-  text-align: center;
+  font-size: 10em;
 }
 
 #github{
-  position: absolute;
   width: 7vw;
   transform: translate(32vw, 28vh);
 }
 #twitter{
-  position: absolute;
   width: 7vw;
   transform: translate(-32vw, 30vh);
-}
-
-
-.navmenu{
-  list-style: none;
-  text-align: center;
-}
-
-.test{
-  color:blue;
-}
-
-.navmenuItems{
-  font-size: 4vh;
-  font-family: "Poppins", sans-serif;
-  float: left;
-  margin-right: 6vw;
-  text-align: center;
-}
-
-.navmenu li:hover{
-  transition: ease-in-out 0.2s;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.mainNav{
-  margin: auto;
-  margin-left: 3vw;
-  position: absolute;
-  top: 7vw;
 }

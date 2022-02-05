@@ -208,10 +208,10 @@ body {
 }
 
 .test{
-  color:blue;
+  
 }
 
-.navmenuItems{
+.navmenu li{
   font-size: 4vh;
   font-family: "Poppins", sans-serif;
   float: left;
