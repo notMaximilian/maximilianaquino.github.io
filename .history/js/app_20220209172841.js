@@ -397,8 +397,17 @@ function createHeader($container, $element,name) {
     const width = WINDOW_WIDTH + 50;
 
       WINDOW_STATE.fullscreen = true;
-
-
+    }
+    else if (width == 1366){
+      // background.style.backgroundImage = "url('img/background-white-1366x768.png')";
+      WINDOW_STATE.fullscreen = true;
+    }
+    else{
+      WINDOW_STATE.fullscreen == false
+      document.querySelector(".congratulations").style.display = "block";
+      return;
+    }
+  
     const $container = document.querySelector(".game");
     createRocket($container);
     createHeader($container, document.getElementById('about'),'about');

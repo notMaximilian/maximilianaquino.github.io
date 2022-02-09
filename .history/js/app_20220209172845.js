@@ -398,7 +398,12 @@ function createHeader($container, $element,name) {
 
       WINDOW_STATE.fullscreen = true;
 
-
+    else{
+      WINDOW_STATE.fullscreen == false
+      document.querySelector(".congratulations").style.display = "block";
+      return;
+    }
+  
     const $container = document.querySelector(".game");
     createRocket($container);
     createHeader($container, document.getElementById('about'),'about');
