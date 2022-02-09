@@ -1,0 +1,11 @@
+.corners{
+    position: absolute;
+    width: 16vw;
+  }
+  
+  #cornerL{
+    transform: translate(-35vw, 23vh);
+  }
+  #cornerR{
+    transform: translate(35vw, 23vh);
+  }

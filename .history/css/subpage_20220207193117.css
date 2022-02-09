@@ -1,0 +1,26 @@
+.corners{
+    position: absolute;
+    width: 16vw;
+  }
+  
+  #cornerL{
+    transform: translate(-35vw, 23vh);
+  }
+  #cornerR{
+    transform: translate(35vw, 23vh);
+  }
+
+  #github{
+    position: absolute;
+    width: 7vw;
+    transform: translate(32vw, 28vh);
+  }
+  #twitter{
+    position: absolute;
+    width: 7vw;
+    transform: translate(-32vw, 30vh);
+  }
+
+li{
+    
+}
