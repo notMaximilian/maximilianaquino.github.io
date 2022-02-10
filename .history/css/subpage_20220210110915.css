@@ -1,0 +1,64 @@
+.corners{
+    position: absolute;
+    width: 16vw;
+}
+
+#cornerL{
+    transform: translate(-35vw, 23vh);
+}
+#cornerR{
+    transform: translate(35vw, 23vh);
+}
+
+#github{
+    position: absolute;
+    width: 7vw;
+    transform: translate(32vw, 28vh);
+}
+#twitter{
+    position: absolute;
+    width: 7vw;
+    transform: translate(-32vw, 30vh);
+}
+
+ul{
+    list-style-type: none;
+}
+
+.navmenuItems{
+    font-size: 2vh;
+    font-family: "Poppins", sans-serif;
+    float: left;
+    margin-right: 3vw;
+    text-align: center;
+    transition: ease-in-out 0.2s;
+}
+
+
+h1{
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    margin-top: 8vh;
+    font-size: 100px;
+    margin-bottom: 0vh;
+}
+
+p{
+    inline-size: 49vw;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    /* border: 5px solid black; */
+    margin: 0 auto;
+    font-size: 30px ;
+}
+
+.intro{
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    transition: .2s;
+  }

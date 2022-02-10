@@ -1,0 +1,48 @@
+.corners{
+    position: absolute;
+    width: 16vw;
+}
+
+#cornerL{
+    transform: translate(-35vw, 23vh);
+}
+#cornerR{
+    transform: translate(35vw, 23vh);
+}
+
+#github{
+    position: absolute;
+    width: 7vw;
+    transform: translate(32vw, 28vh);
+}
+#twitter{
+    position: absolute;
+    width: 7vw;
+    transform: translate(-32vw, 30vh);
+}
+
+ul{
+    list-style-type: none;
+}
+li{
+    float: left;
+    font-family: "Poppins", sans-serif;
+    margin-right: 2vw;
+}
+
+h1{
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    margin-top: 8vh;
+    font-size: 100px;
+    margin
+}
+
+p{
+    inline-size: 49vw;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    /* border: 5px solid black; */
+    margin: 0 auto;
+    font-size: 30px ;
+}

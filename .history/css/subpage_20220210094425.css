@@ -1,0 +1,40 @@
+.corners{
+    position: absolute;
+    width: 16vw;
+}
+
+#cornerL{
+    transform: translate(-35vw, 23vh);
+}
+#cornerR{
+    transform: translate(35vw, 23vh);
+}
+
+#github{
+    position: absolute;
+    width: 7vw;
+    transform: translate(32vw, 28vh);
+}
+#twitter{
+    position: absolute;
+    width: 7vw;
+    transform: translate(-32vw, 30vh);
+}
+
+ul{
+    list-style-type: none;
+}
+li{
+    float: left;
+    font-family: "Poppins", sans-serif;
+    margin-right: 2vw;
+}
+
+h1{
+    text-align: center;
+    margin-top: 4vh;
+}
+
+p{
+    text-align: center;
+}
