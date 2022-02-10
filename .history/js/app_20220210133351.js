@@ -264,6 +264,9 @@ function updateRocket(dt, $container, x) {
           else if (header.name == 'projects'){
             openTab($container, header)
             destroyLaser($container, laser);
+            const test = document.createElement('h1');
+            const testNode = document.createTextNode('Projects')
+            test.appendChild(testNode)
             return;
           }
           // if (header.name == 'more' || header.name == 'back'){

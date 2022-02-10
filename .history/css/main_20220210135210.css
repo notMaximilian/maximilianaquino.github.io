@@ -136,7 +136,6 @@ body {
 .icon:hover{
   display: inline-block;
   transform: scale(1.5); 
-  opacity:0;
 }
 
 .intro{

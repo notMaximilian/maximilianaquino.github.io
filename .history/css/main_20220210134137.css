@@ -127,16 +127,11 @@ body {
 }
 
 .icon{
-  display: inline-block;
-  z-index: 1000;
-  transition: all .2s ease-in-out; 
-  
+  opacity: .5;
 }
 
 .icon:hover{
-  display: inline-block;
-  transform: scale(1.5); 
-  opacity:0;
+ opacity: 0;
 }
 
 .intro{
@@ -250,8 +245,8 @@ body {
 }
 
 #github{
-  display: inline-block;
   position: absolute;
+  b
   width: 7vw;
   transform: translate(32vw, 28vh);
 }

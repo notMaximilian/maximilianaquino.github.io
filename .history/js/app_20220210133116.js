@@ -259,13 +259,13 @@ function updateRocket(dt, $container, x) {
           if(header.name == 'about'){
             openTab($container, header)
             destroyLaser($container, laser);
-            return;
+            const test = document.createElement('h1');
+            const testNode = document.createTextNode('About')
+            test.appendChild(testNode)
+            // test.classList.add('yeight')
+            return
           }
-          else if (header.name == 'projects'){
-            openTab($container, header)
-            destroyLaser($container, laser);
-            return;
-          }
+          else if ()
           // if (header.name == 'more' || header.name == 'back'){
               
           //     for (let x = 0; x < headers.length; x++){

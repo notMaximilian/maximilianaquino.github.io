@@ -259,12 +259,11 @@ function updateRocket(dt, $container, x) {
           if(header.name == 'about'){
             openTab($container, header)
             destroyLaser($container, laser);
-            return;
-          }
-          else if (header.name == 'projects'){
-            openTab($container, header)
-            destroyLaser($container, laser);
-            return;
+            const test = document.createElement('h1');
+            const testNode = document.createTextNode('About')
+            test.appendChild(testNode)
+            // test.classList.add('yeight')
+            return
           }
           // if (header.name == 'more' || header.name == 'back'){
               
@@ -450,22 +449,19 @@ function createHeader($container, $element,name) {
     about.addEventListener("click", (event) => {
       let x = getElementX(about)
       click = true
-      updateRocket(dt, $container, x)
       setTimeout( () =>{
-        WINDOW_STATE.spacePressed = true;
+        createLaser($container, WINDOW_STATE.rocketX - 90.5,  WINDOW_STATE.rocketY +180);
+        click = false;
       }, 1100)
+
     })
    
-    
 
     const projects = document.getElementById('projects')
     projects.addEventListener("click", (event) => {
       let x = getElementX(projects)
       click = true
       updateRocket(dt, $container, x)
-      setTimeout( () =>{
-        WINDOW_STATE.spacePressed = true;
-      }, 1100)
     })
 
 
@@ -474,9 +470,6 @@ function createHeader($container, $element,name) {
       let x = getElementX(experience)
       click = true
       updateRocket(dt, $container, x)
-      setTimeout( () =>{
-        WINDOW_STATE.spacePressed = true;
-      }, 1100)
     })
 
 
@@ -485,9 +478,6 @@ function createHeader($container, $element,name) {
       let x = getElementX(more)
       click = true
       updateRocket(dt, $container, x)
-      setTimeout( () =>{
-        WINDOW_STATE.spacePressed = true;
-      }, 1100)
     })
    
 
