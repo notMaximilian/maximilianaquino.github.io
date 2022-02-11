@@ -76,9 +76,9 @@ function openTab ($container, header){
 
   // Fade icons
   const github = document.getElementById('github')
-  const linked = document.getElementById('in')
+  const twitter = document.getElementById('in')
   github.classList.add('fade')
-  linked.classList.add('fade')
+  twitter.classList.add('fade')
 
   // Fade headers
   const headers = WINDOW_STATE.headers;
@@ -510,7 +510,7 @@ function createHeader($container, $element,name) {
     const linked = document.getElementById('in')
     linked.addEventListener("click", (event) => {
       let x = getElementX(linked)
-      let y = getElementY(linked) - 240
+      let y = getElementY(linked) - 230
       linked.style.opacity = 0;
       click = true
       updateRocket(dt, $container, x)

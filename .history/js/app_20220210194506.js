@@ -518,7 +518,7 @@ function createHeader($container, $element,name) {
         WINDOW_STATE.rocketY = y;
       }, 1200)
       setTimeout( () => {
-        window.location.href = 'https://www.linkedin.com/in/maximilian-aquino'
+        window.location.href = 'https://www.linkedin.com/in/maximilian-aquino_blank'
       },1200)
     })
 

@@ -510,7 +510,7 @@ function createHeader($container, $element,name) {
     const linked = document.getElementById('in')
     linked.addEventListener("click", (event) => {
       let x = getElementX(linked)
-      let y = getElementY(linked) - 240
+      let y = getElementY(linked) - 230
       linked.style.opacity = 0;
       click = true
       updateRocket(dt, $container, x)

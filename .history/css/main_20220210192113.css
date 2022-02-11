@@ -127,7 +127,6 @@ body {
 }
 
 .icon{
-  cursor: pointer;
   display: inline-block;
   z-index: 1000;
   transition: all .5s ease-in-out; 
@@ -255,7 +254,7 @@ body {
   width: 7vw;
   transform: translate(32vw, 28vh);
 }
-#in{
+#twitter{
   position: absolute;
   width: 7vw;
   transform: translate(-32vw, 30vh);
@@ -320,7 +319,7 @@ body {
   transition: ease-in-out 0.2s;
 }
 
-a{
+.mainNav a{
   color:black;
   text-decoration: none;
 }

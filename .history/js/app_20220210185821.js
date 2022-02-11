@@ -76,9 +76,9 @@ function openTab ($container, header){
 
   // Fade icons
   const github = document.getElementById('github')
-  const linked = document.getElementById('in')
+  const twitter = document.getElementById('twitter')
   github.classList.add('fade')
-  linked.classList.add('fade')
+  twitter.classList.add('fade')
 
   // Fade headers
   const headers = WINDOW_STATE.headers;
@@ -433,11 +433,6 @@ function createHeader($container, $element,name) {
     const position = $element.getBoundingClientRect();
     return position.left;
   }
-
-  function getElementY($element){
-    const position = $element.getBoundingClientRect();
-    return position.top;
-  }
   
   function update(e) {
     const currentTime = Date.now();
@@ -482,6 +477,7 @@ function createHeader($container, $element,name) {
       }, 1100)
     })
 
+
     const more = document.getElementById('more')
     more.addEventListener("click", (event) => {
       let x = getElementX(more)
@@ -495,32 +491,10 @@ function createHeader($container, $element,name) {
     const github = document.getElementById('github')
     github.addEventListener("click", (event) => {
       let x = getElementX(github)
-      let y = getElementY(github) - 230
-      github.style.opacity = 0;
       click = true
       updateRocket(dt, $container, x)
-      setTimeout( () =>{
-        WINDOW_STATE.rocketY = y;
-      }, 1200)
-      setTimeout( () => {
-        window.location.href = 'https://github.com/notMaximilian'
-      },1200)
     })
    
-    const linked = document.getElementById('in')
-    linked.addEventListener("click", (event) => {
-      let x = getElementX(linked)
-      let y = getElementY(linked) - 240
-      linked.style.opacity = 0;
-      click = true
-      updateRocket(dt, $container, x)
-      setTimeout( () =>{
-        WINDOW_STATE.rocketY = y;
-      }, 1200)
-      setTimeout( () => {
-        window.location.href = 'https://www.linkedin.com/in/maximilian-aquino'
-      },1200)
-    })
 
     let x = null;
     updateRocket(dt, $container, x);
